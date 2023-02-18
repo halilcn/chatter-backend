@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose';
 
 interface ICompany {
-  api_key: string;
+  key: string;
   name: string;
 }
 const companySchema = new Schema<ICompany>({
-  api_key: {
+  key: {
     type: String,
     required: true
   },

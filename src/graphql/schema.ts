@@ -1,9 +1,20 @@
 import { buildSchema } from 'graphql';
 
 export default buildSchema(`
+    type Company{
+        name: String
+        key: String
+    }
+
+    input CompanyInputData { 
+        name: String
+     }
+ 
+    
     type Product{
         name: String!
     }
+
    input ProductInputData { 
        name: String!
        description: String!
@@ -12,6 +23,7 @@ export default buildSchema(`
     }
     type RootMutation {
        createProduct(productInput:ProductInputData): Product!
+       createCompany(CompanyInputData): Company!
     }
     type ProductData {
         products: [Product!]!
