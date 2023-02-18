@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^18.14.0",
+    "@types/mongoose": "^5.11.97",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
     "prettier": "2.8.4",

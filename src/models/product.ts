@@ -9,4 +9,5 @@ const productSchema = new Schema<IProduct>({
     required: true
   }
 });
-module.exports = model('Product', productSchema);
+
+export default model('Product', productSchema);
