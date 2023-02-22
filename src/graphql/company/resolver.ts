@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import Company from '../models/company';
-import { ICompany, ICompanyInputData } from '../types';
+import Company from '../../models/company';
+import { ICompany, ICompanyInputData } from '../../types';
 
 export default {
   createCompany: async ({ companyInputData }: { companyInputData: ICompanyInputData }): Promise<ICompany> => {
@@ -13,11 +13,12 @@ export default {
       key: company.key
     };
   },
-  companies: async () => {
+  companyCollection: async () => {
     const companies = await Company.find({});
 
     return {
-      companies: []
+      companies: [],
+      test:'sadsa'
     };
   }
 };

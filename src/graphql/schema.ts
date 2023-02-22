@@ -16,8 +16,9 @@ export default buildSchema(`
     type CompanyData{
         companies: [Company!]!
     }
+    
     type RootQuery {
-        companies: CompanyData!
+        companyCollection: CompanyData!
     }
     
    schema {

@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import graphqlSchema from './graphql/schema';
-import graphqlResolver from './graphql/resolvers';
+import graphqlResolver from './graphql/resolver';
 
 import './bootstrap';
 
