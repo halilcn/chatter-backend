@@ -10,26 +10,14 @@ export default buildSchema(`
         name: String
      }
  
-    
-    type Product{
-        name: String!
-    }
-
-   input ProductInputData { 
-       name: String!
-       description: String!
-       price: Float!
-       discount: Int
-    }
     type RootMutation {
-       createProduct(productInput:ProductInputData): Product!
-       createCompany(CompanyInputData): Company!
+       createCompany(companyInputData:CompanyInputData): Company!
     }
-    type ProductData {
-        products: [Product!]!
+    type CompanyData{
+        companies: [Company!]!
     }
     type RootQuery {
-        products: ProductData!
+        companies: CompanyData!
     }
     
    schema {
