@@ -1,24 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import Company from '../../models/company';
-import { ICompany, ICompanyInputData } from '../../types';
+import { ICompanyData, ICompanyInputData } from '../../types';
 
 export default {
-  createCompany: async ({ companyInputData }: { companyInputData: ICompanyInputData }): Promise<ICompany> => {
+  createCompany: async ({ companyInputData }: { companyInputData: ICompanyInputData }): Promise<ICompanyData> => {
     const { name } = companyInputData;
-    const company = await Company.create({ name, key: uuidv4() });
+    const company = (await Company.create({ name, key: uuidv4() })).toJSON();
 
-    return {
-      name: company.name,
-      key: company.key
-    };
+    return company;
   },
   companyCollection: async () => {
     const companies = await Company.find({});
 
     return {
-      companies: [],
-      test:'sadsa'
+      companies
     };
   }
 };

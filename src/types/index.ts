@@ -2,7 +2,7 @@ export interface ICompanyInputData {
   name: string;
 }
 
-export interface ICompany {
+export interface ICompanyData {
   name: string;
   key: string;
 }
