@@ -1,4 +1,4 @@
-import companyResolver from './company/resolver';
+import companyResolver from './modules/company/resolver';
 
 export default {
   ...companyResolver

@@ -1,28 +1,12 @@
 import { buildSchema } from 'graphql';
+import companySchema from './modules/company/schema';
+import consultantSchema from './modules/consultant/schema';
 
 export default buildSchema(`
-    type Company{
-        name: String
-        key: String
-    }
+type Query{
+    _empty: String
+}
 
-    input CompanyInputData { 
-        name: String
-     }
- 
-    type RootMutation {
-       createCompany(companyInputData:CompanyInputData): Company!
-    }
-    type CompanyData{
-        companies: [Company!]!
-    }
-    
-    type RootQuery {
-        companyCollection: CompanyData!
-    }
-    
-   schema {
-       query: RootQuery
-       mutation: RootMutation
-   }
+${companySchema}    
+${consultantSchema}    
 `);

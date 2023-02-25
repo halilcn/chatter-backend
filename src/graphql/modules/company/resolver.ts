@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import Company from '../../models/company';
-import { ICompanyData, ICompanyInputData } from '../../types';
+import Company from '../../../models/company';
+import { ICompanyData, ICompanyInputData } from '../../../types';
 
 export default {
   createCompany: async ({ companyInputData }: { companyInputData: ICompanyInputData }): Promise<ICompanyData> => {
@@ -16,5 +16,5 @@ export default {
     return {
       companies
     };
-  }
+  },
 };
