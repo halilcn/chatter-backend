@@ -1,7 +1,9 @@
 import { Schema, model } from 'mongoose';
-import { ICompanyData } from '../types';
 
-interface ICompany extends ICompanyData {}
+interface ICompany {
+  name: string;
+  key: string;
+}
 
 const companySchema = new Schema<ICompany>(
   {

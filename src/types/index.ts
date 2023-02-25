@@ -6,3 +6,7 @@ export interface ICompanyData {
   name: string;
   key: string;
 }
+
+export interface IConsultantData {
+
+}

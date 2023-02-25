@@ -1,10 +1,11 @@
 import { Schema, model } from 'mongoose';
 
-interface IUser {
+interface IConsultant {
   username: string;
   companyId: Schema.Types.ObjectId;
 }
-const userSchema = new Schema<IUser>({
+
+const consultantSchema = new Schema<IConsultant>({
   username: {
     type: String,
     required: true
@@ -14,7 +15,6 @@ const userSchema = new Schema<IUser>({
     required: true,
     ref: 'Company'
   }
-  // TODO: google auth user unique key ?
 });
 
-export default model('User', userSchema);
+export default model('Consultant', consultantSchema);

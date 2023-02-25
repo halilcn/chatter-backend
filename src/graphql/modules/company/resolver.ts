@@ -4,17 +4,15 @@ import Company from '../../../models/company';
 import { ICompanyData, ICompanyInputData } from '../../../types';
 
 export default {
-  createCompany: async ({ companyInputData }: { companyInputData: ICompanyInputData }): Promise<ICompanyData> => {
-    const { name } = companyInputData;
+  createCompany: async ({ input }: { input: ICompanyInputData }): Promise<ICompanyData> => {
+    const { name } = input;
     const company = (await Company.create({ name, key: uuidv4() })).toJSON();
 
     return company;
   },
-  companyCollection: async () => {
+  companies: async () => {
     const companies = await Company.find({});
 
-    return {
-      companies
-    };
-  },
+    return companies;
+  }
 };
