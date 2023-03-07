@@ -4,15 +4,15 @@ type Company{
     key: String
 }
 
-extend type Query{
-    companies: [Company!]!
-}
-
 input CreateCompanyInputData { 
     name: String
  }
 
-type Mutation {
-    createCompany(input:CreateCompanyInputData): Company!
+extend type Query{
+    companies: [Company]
+}
+
+extend type Mutation {
+    createCompany(input:CreateCompanyInputData): Company
  }
  `;

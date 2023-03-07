@@ -1,3 +1,5 @@
+import { Schema } from 'mongoose';
+
 export interface ICompanyInputData {
   name: string;
 }
@@ -7,6 +9,7 @@ export interface ICompanyData {
   key: string;
 }
 
-export interface IConsultantData {
-
+export interface IConsultantInputData {
+  companyId: string;
+  username: string;
 }

@@ -6,6 +6,9 @@ export default buildSchema(`
 type Query{
     _empty: String
 }
+type Mutation{
+    _empty: String
+}
 
 ${companySchema}    
 ${consultantSchema}    

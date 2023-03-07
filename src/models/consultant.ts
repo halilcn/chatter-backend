@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 interface IConsultant {
   username: string;
-  companyId: Schema.Types.ObjectId;
+  companyId: string;
 }
 
 const consultantSchema = new Schema<IConsultant>({
@@ -11,7 +11,7 @@ const consultantSchema = new Schema<IConsultant>({
     required: true
   },
   companyId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: 'Company'
   }
