@@ -1,5 +1,9 @@
 import { Schema } from 'mongoose';
 
+export interface ICustomErrorClass extends Error {
+  status: number;
+}
+
 export interface ICompanyInputData {
   name: string;
 }
