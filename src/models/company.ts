@@ -1,11 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-interface ICompany {
-  name: string;
-  key: string;
-}
-
-const companySchema = new Schema<ICompany>(
+const companySchema = new Schema(
   {
     key: {
       type: String,

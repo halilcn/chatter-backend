@@ -14,6 +14,6 @@ export interface ICompanyData {
 }
 
 export interface IConsultantInputData {
-  companyId: string;
+  companyKey: string;
   username: string;
 }

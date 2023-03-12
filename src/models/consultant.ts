@@ -1,19 +1,18 @@
 import { Schema, model } from 'mongoose';
 
-interface IConsultant {
-  username: string;
-  companyId: string;
-}
-
-const consultantSchema = new Schema<IConsultant>({
+const consultantSchema = new Schema({
   username: {
     type: String,
     required: true
   },
-  companyId: {
+  tokens: {
+    type: [String],
+    default: [],
+    required: true
+  },
+  companyKey: {
     type: String,
-    required: true,
-    ref: 'Company'
+    required: true
   }
 });
 

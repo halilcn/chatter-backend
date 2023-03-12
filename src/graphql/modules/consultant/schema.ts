@@ -1,17 +1,21 @@
 export default `
 type Consultant{
-    companyId: String
+    companyKey: String
     username: String
 }
 
+type AuthToken{
+    token: String
+}
 
 input CreateConsultantInputData { 
-    companyId: String
+    companyKey: String
     username: String
  }
 
 extend type Mutation {
     createConsultant(input:CreateConsultantInputData): Consultant
+    createAuthToken(input:CreateConsultantInputData): AuthToken
  }
 `
 
