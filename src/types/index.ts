@@ -17,3 +17,7 @@ export interface IConsultantInputData {
   companyKey: string;
   username: string;
 }
+
+export interface IAuthToken {
+  token: string;
+}

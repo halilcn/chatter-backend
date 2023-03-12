@@ -1,4 +1,4 @@
-import { IConsultantInputData } from '../../../types';
+import { IAuthToken, IConsultantInputData } from '../../../types';
 import Consultant from '../../../models/consultant';
 import errorCatcher from '../../../utils/errorCatcher';
 import { BadRequest } from '../../../utils/errors';
@@ -19,8 +19,21 @@ export default {
     const consultant = (await Consultant.findOne({ username, companyKey }))?.toJSON();
 
     if (!consultant) throw new BadRequest('User is not found');
-    
+
     await Consultant.updateOne({ username, companyKey }, { tokens: [...consultant.tokens, token] });
+
+    return { token };
+  }),
+  deleteAuthToken: errorCatcher(async ({ input }: { input: IAuthToken }) => {
+    const { token } = input;
+    const consultant = (await Consultant.findOne({ tokens: { $in: [token] } }))?.toJSON();
+
+    if (!consultant) throw new BadRequest('User is not found');
+
+    await Consultant.updateOne(
+      { username: consultant.username, companyKey: consultant.companyKey },
+      { tokens: [...consultant.tokens.filter(consultantToken => consultantToken != token)] }
+    );
 
     return { token };
   })

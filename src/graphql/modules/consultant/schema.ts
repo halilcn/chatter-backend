@@ -11,11 +11,16 @@ type AuthToken{
 input CreateConsultantInputData { 
     companyKey: String
     username: String
- }
+}
+
+input deleteAuthTokenInputData { 
+    token: String
+}
 
 extend type Mutation {
     createConsultant(input:CreateConsultantInputData): Consultant
     createAuthToken(input:CreateConsultantInputData): AuthToken
+    deleteAuthToken(input:deleteAuthTokenInputData): AuthToken
  }
 `
 
