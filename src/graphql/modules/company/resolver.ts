@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import Company from '../../../models/company';
-import { ICompanyData, ICompanyInputData } from '../../../types';
+import { ICompanyInputData } from '../../../types';
 import errorCatcher from '../../../utils/errorCatcher';
 
 export default {

@@ -1,18 +1,15 @@
 import { IConsultantInputData } from '../../../types';
 import Consultant from '../../../models/consultant';
+import errorCatcher from '../../../utils/errorCatcher';
+import { BadRequest } from '../../../utils/errors';
 
 export default {
-  createConsultant: async ({ input }: { input: IConsultantInputData }): Promise<IConsultantInputData|> => {
+  createConsultant: errorCatcher(async ({ input }: { input: IConsultantInputData }) => {
     const { companyId, username } = input;
-    const isExistConsultant = await Consultant.exists({ username, companyId });
-    if (!isExistConsultant) {
-        const consultant = (await Consultant.create({ companyId, username })).toJSON();
+    const existConsultant = await Consultant.exists({ username, companyId });
 
-        return consultant;
-    }
+    if (existConsultant) throw new BadRequest('Consultant is exists');
 
-    const consultant = (await Consultant.create({ companyId, username })).toJSON();
-
-    return consultant;
-  }
+    return (await Consultant.create({ companyId, username })).toJSON();
+  })
 };
