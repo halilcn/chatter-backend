@@ -23,9 +23,3 @@ extend type Mutation {
     deleteAuthToken(input:deleteAuthTokenInputData): AuthToken
  }
 `
-
-/*
-extend type Query{
-    companies: [Company!]!
-}
-*/

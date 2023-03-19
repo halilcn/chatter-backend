@@ -21,3 +21,19 @@ export interface IConsultantInputData {
 export interface IAuthToken {
   token: string;
 }
+
+export enum MessageUserTypeEnum {
+  CONSULTANT = 'consultant',
+  CONSUMER = 'consumer'
+}
+
+export interface IMessageInputData {
+  channelId: string;
+  text: string;
+  consumerName?: string;
+  from: MessageUserTypeEnum;
+}
+
+export interface IMessagesInputData {
+  channelId: string;
+}

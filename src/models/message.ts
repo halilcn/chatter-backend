@@ -1,5 +1,19 @@
 import { Schema, model } from 'mongoose';
 
+const Message = new Schema(
+  {
+    text: {
+      type: String
+    },
+    from: {
+      type: String
+    }
+  },
+  {
+    timestamps: true
+  }
+);
+
 const messageSchema = new Schema({
   consultantId: {
     type: String,
@@ -11,11 +25,15 @@ const messageSchema = new Schema({
   },
   status: {
     type: Boolean,
-    default: false,
+    default: true,
+    require: true
+  },
+  consumerName: {
+    type: String,
     require: true
   },
   messages: {
-    type: [Object],
+    type: [Message],
     required: true,
     default: []
   }
