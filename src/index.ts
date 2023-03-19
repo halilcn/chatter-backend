@@ -13,7 +13,7 @@ const graphqlOptions = {
   schema: graphqlSchema,
   rootValue: graphqlResolver,
   graphiql: true,
-  formatError
+  customFormatErrorFn: formatError
 };
 
 app.use('/graphql', graphqlHTTP(graphqlOptions));

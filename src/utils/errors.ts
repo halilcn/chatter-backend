@@ -13,7 +13,7 @@ export class BadRequest extends Error implements ICustomErrorClass {
 export class UnAuthorized extends Error implements ICustomErrorClass {
   public status: number;
 
-  constructor(message = 'BAD_REQUEST') {
+  constructor(message = 'UNAUTHORIZED') {
     super(message);
     this.status = StatusCodes.UNAUTHORIZED;
   }
