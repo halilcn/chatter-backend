@@ -5,6 +5,10 @@ type Message{
     createdAt: String
 }
 
+type MessageChat{
+    channelId: String
+}
+
 type WrapperMessage{
     messages: [Message]
     status: String
@@ -13,8 +17,11 @@ type WrapperMessage{
 input CreateMessageInputData { 
     text: String
     channelId: String
-    consumerName: String
     from: String
+}
+
+input StartChatInputData { 
+    consumerName: String
 }
 
 input MessagesInputData { 
@@ -31,6 +38,6 @@ extend type Query{
 
 extend type Mutation {
     createMessage(input:CreateMessageInputData): Message
+    startChat(input:StartChatInputData): MessageChat
  }
-
 `;

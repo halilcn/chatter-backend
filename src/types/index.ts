@@ -30,8 +30,11 @@ export enum MessageUserTypeEnum {
 export interface IMessageInputData {
   channelId: string;
   text: string;
-  consumerName?: string;
   from: MessageUserTypeEnum;
+}
+
+export interface IChatInputData {
+  consumerName: string;
 }
 
 export interface IMessagesInputData {

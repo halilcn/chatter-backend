@@ -1,20 +1,17 @@
+import { v4 as uuidv4 } from 'uuid';
 import Message from '../../../models/message';
-import { IMessageInputData, IMessagesInputData } from '../../../types';
+import { IChatInputData, IMessageInputData, IMessagesInputData } from '../../../types';
 import errorCatcher from '../../../utils/errorCatcher';
-import { UnAuthorized } from '../../../utils/errors';
+import { BadRequest, UnAuthorized } from '../../../utils/errors';
+
+// TODO: we have to examine the status for guest user and consultant user.
 
 export default {
   createMessage: errorCatcher(async ({ input }: { input: IMessageInputData }) => {
-    const { text, channelId, consumerName, from } = input;
+    const { text, channelId, from } = input;
 
     const existChannelId = await Message.exists({ channelId });
-    if (!existChannelId) {
-      // TODO:if the user is consultant the user can start a conversation, if the user is not the user can't start it.
-      // TODO:But creating unique channelIf on the backend is better, we have to focus it in the next days.
-      const consultantId = '12345';
-      if (!consultantId) throw new UnAuthorized();
-      await Message.create({ channelId, consumerName, consultantId });
-    }
+    if (!existChannelId) throw new BadRequest('The channel id is not exist');
 
     const { messages } = (await Message.findOne({ channelId }))?.toJSON();
     await Message.updateOne(
@@ -32,6 +29,18 @@ export default {
     const resMessage = (await Message.findOne({ channelId }))?.toJSON().messages[0];
 
     return { text: resMessage?.text, from: resMessage?.from, createdAt: resMessage?.createdAt };
+  }),
+  startChat: errorCatcher(async ({ input }: { input: IChatInputData }) => {
+    const { consumerName } = input;
+    const consultantId = '12345';
+    const channelId = `${consumerName}_${'TEST_name'}_${uuidv4()}`;
+
+    // TODO: if the user is not consultant, the user can't start a new conversation
+    if (!consultantId) throw new UnAuthorized();
+
+    await Message.create({ channelId, consumerName, consultantId });
+
+    return { channelId };
   }),
   messages: errorCatcher(async ({ input }: { input: IMessagesInputData }) => {
     // TODO: for example, if an user who is a consultant want to more information about customer, how can we provide the additional information?
