@@ -3,8 +3,7 @@ import Message from '../../../models/message';
 import { IChatInputData, IMessageInputData, IMessagesInputData } from '../../../types';
 import errorCatcher from '../../../utils/errorCatcher';
 import { BadRequest, UnAuthorized } from '../../../utils/errors';
-
-// TODO: we have to examine the status for guest user and consultant user.
+import { checkAuth } from '../../../utils/helper';
 
 export default {
   createMessage: errorCatcher(async ({ input }: { input: IMessageInputData }) => {
@@ -30,15 +29,12 @@ export default {
 
     return { text: resMessage?.text, from: resMessage?.from, createdAt: resMessage?.createdAt };
   }),
-  startChat: errorCatcher(async ({ input }: { input: IChatInputData }) => {
+  startChat: errorCatcher(async ({ input }: { input: IChatInputData }, { auth }: { auth: object }) => {
     const { consumerName } = input;
-    const consultantId = '12345';
+    const consultant = checkAuth(auth);
     const channelId = `${consumerName}_${'TEST_name'}_${uuidv4()}`;
 
-    // TODO: if the user is not consultant, the user can't start a new conversation
-    if (!consultantId) throw new UnAuthorized();
-
-    await Message.create({ channelId, consumerName, consultantId });
+    await Message.create({ channelId, consumerName, consultantId: consultant?._id });
 
     return { channelId };
   }),
